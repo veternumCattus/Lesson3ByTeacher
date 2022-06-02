@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lesson3ByTeacher</string>
+    <string name="demo_life_cycle">Демонстрация жизненного цикла</string>
+    <string name="spare_name_1">резервная строка 1</string>
+</resources>
