@@ -3,9 +3,12 @@ package ru.geekbrains.course1.lesson3byteacher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final static String TAG = "LifeCycle: ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,35 +20,65 @@ public class MainActivity extends AppCompatActivity {
         } else {
             instanceState = "Повторный запуск";
         }
-        Toast.makeText(getApplicationContext(), instanceState + " - on Create", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), instanceState + " - on Create", Toast.LENGTH_SHORT).show();
+        makeToast(instanceState);
     }
 
     @Override
     protected void onStart() {
-       super.onStart();
-        Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_SHORT).show();
-   }
+        super.onStart();
+        //Toast.makeText(getApplicationContext(), "onStart", Toast.LENGTH_SHORT).show();
+        makeToast("onStart");
+    }
 
     @Override
-    protected void onRestoreInstanceState(Bundle saveInstanceState){
+    protected void onRestoreInstanceState(Bundle saveInstanceState) {
         super.onRestoreInstanceState(saveInstanceState);
-        Toast.makeText(getApplicationContext(), "Повторный запуск!! - onRestoreInstanceState()", Toast.LENGTH_SHORT).show();
+        makeToast("Повторный запуск!! - onRestoreInstanceState()");
     }
+
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(getApplicationContext(), "onResume()", Toast.LENGTH_SHORT).show();
+        makeToast("onResume");
     }
+
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(getApplicationContext(), "onPause()",
-                Toast.LENGTH_SHORT).show();
+        makeToast("onPause");
     }
+
     @Override
-    protected void onSaveInstanceState(Bundle saveInstanceState){
+    protected void onSaveInstanceState(Bundle saveInstanceState) {
         super.onSaveInstanceState(saveInstanceState);
-        Toast.makeText(getApplicationContext(), "onSaveInstanceState()", Toast.LENGTH_SHORT).show();
+        makeToast("onSaveInstanceState()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        makeToast("onStop()");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        makeToast("onRestart()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        makeToast("onDestroy()");
+    }
+
+    //-----------------
+
+    private void makeToast(String msg) {
+        //Toast.makeText(getApplicationContext(), msg +"", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg + "", Toast.LENGTH_LONG).show();
+        Log.d(TAG, msg);
     }
 
 }
